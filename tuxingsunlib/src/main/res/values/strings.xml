@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">土行孙库</string>
+    <string name="aces_title">土行孙*助手</string>
+    <string name="aces_description"><![CDATA[支持安装、卸载、强制停止、下载等...]]></string>
+</resources>
