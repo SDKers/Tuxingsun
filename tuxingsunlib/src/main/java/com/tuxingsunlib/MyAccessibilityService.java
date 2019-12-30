@@ -5,14 +5,10 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
@@ -20,6 +16,7 @@ import com.tuxingsunlib.impl.AccessibilityImpl;
 import com.tuxingsunlib.utils.AppList;
 import com.tuxingsunlib.utils.ScreenSize;
 import com.tuxingsunlib.utils.ServiceHolder;
+import com.tuxingsunlib.utils.content.PubText;
 import com.tuxingsunlib.utils.log.L;
 import com.tuxingsunlib.utils.log.Rom;
 import com.tuxingsunlib.utils.log.SP;
@@ -47,154 +44,6 @@ public class MyAccessibilityService extends AccessibilityService {
     private static volatile boolean isInstalling = false;
     // 手机安装列表个数
     private static volatile int APP_LIST = -1;
-    /**
-     * 安装中、导航中的文字
-     */
-    private static List<String> installAndNavigationTexts =
-            new ArrayList<>(
-                    Arrays.asList(
-                            // 安装过程
-                            "安装",
-                            "继续",
-                            "继续安装",
-                            "重新安装"
-                            // 锤子
-                            ,
-                            "同意并安装"
-                            // vivo
-                            ,
-                            "同意并继续",
-                            "继续安装旧版本",
-                            "无视风险安装",
-                            "好",
-                            "允许",
-                            "始终允许",
-                            "仅允许一次",
-                            "下一步",
-                            "下一步>",
-                            "替换",
-                            "接受",
-                            "设置"
-                            // 会导致无线打开和关闭状态切换器
-                            ,
-                            "开启",
-                            "关闭",
-                            "同意"
-                            // 更新相关的
-                            ,
-                            "稍后再说",
-                            "以后再说",
-                            "忽略本次",
-                            "狠心放弃"
-                            // 悬浮窗 引导页面
-                            ,
-                            "跳过  5",
-                            "跳过  4",
-                            "跳过  3",
-                            "跳过  2",
-                            "跳过  1",
-                            "跳过  0",
-                            "跳过 5",
-                            "跳过 4",
-                            "跳过 5",
-                            "跳过 2",
-                            "跳过 1",
-                            "3S 关闭",
-                            "2S 关闭",
-                            "1S 关闭",
-                            "4s 跳过",
-                            "3s 跳过",
-                            "2s 跳过",
-                            "1s 跳过",
-                            "开始体验",
-                            "立即体验",
-                            "开始使用",
-                            "我同意",
-                            "进入应用",
-                            "知道了",
-                            "稍后下载",
-                            "立即开始运行",
-                            "现在开启",
-                            "立即开启",
-                            "马上开启",
-                            "是",
-                            "去授权"
-                            // 樊登读书
-                            ,
-                            "看看再说",
-                            "全选进入书城逛逛",
-                            "看看再说 >>",
-                            "全选进入书城逛逛>>>",
-                            "选好了",
-                            "跳过广告",
-                            "开启阅读好时光",
-                            "开启阅读好时光 >>",
-                            "随便看看",
-                            "随便看看 >",
-                            "随便看看 >>",
-                            "随便看看 >>>",
-                            "以后再提醒我",
-                            "立即进入",
-                            "直接试用",
-                            "先去逛逛",
-                            "点击跳过",
-                            "我知道了"
-                            // 银行系列【建设银行】: 支付环境风险.两个点击:  [仍然支付][解决风险]
-                            ,
-                            "仍然支付"
-                            // 360异常警告
-                            ,
-                            "暂不处理"
-
-                            // 需要账号. 刺猬猫阅读
-                            //  , "直接登录"
-                            // 需要账号,瘦瘦-减肥
-                            //  , "立即加入"
-                    ));
-    /**
-     * 标准的结束的文字
-     */
-    private static List<String> completeTexts = new ArrayList<>(Arrays.asList("完成", "确认", "确定"));
-    private boolean isTestGame = false;
-    private Handler mHandler =
-            new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    switch (msg.what) {
-                        case 1:
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            };
-    private Runnable mRunnableReStart =
-            new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        GestureUtil.tap("2018", "1019");
-                        mHandler.postDelayed(mRunnableReStart, 2000);
-                    }
-                }
-            };
-    private Runnable mRunnableNext =
-            new Runnable() {
-                @Override
-                public void run() {
-                    GestureUtil.tap("1590", "872");
-                    mHandler.postDelayed(mRunnableReStart, 500);
-                }
-            };
-    private Runnable mRunnableNoLei =
-            new Runnable() {
-                @Override
-                public void run() {
-                    GestureUtil.tap("1500", "740");
-                    mHandler.postDelayed(mRunnableReStart, 10000);
-                }
-            };
 
     /**
      * 获取页面包名和类名
@@ -311,7 +160,7 @@ public class MyAccessibilityService extends AccessibilityService {
                 try {
                     String tt = texts.get(i);
                     if (!TextUtils.isEmpty(tt)) {
-                        if (installAndNavigationTexts.contains(tt)) {
+                        if (PubText.installAndNavigationTexts.contains(tt)) {
                             AccessibilityNodeInfo nn = map.get(tt);
                             //                            if (DEBUG_TAG) {
                             //                                L.d("发现文字[" + nn.getClassName() + "]: " + tt);
@@ -357,10 +206,6 @@ public class MyAccessibilityService extends AccessibilityService {
             try {
                 GestureUtil.tap(String.valueOf(x), String.valueOf(y));
             } catch (Throwable e) {
-                //                L.v(e);
-                // DEX方式也不能运行
-                //                ShellHelper.getInstatnce().shell("app_process
-                // -Djava.class.path=/data/local/tmp/temp.dex /data/local/tmp cn.demo.Dex");
             }
         }
     }
@@ -390,7 +235,7 @@ public class MyAccessibilityService extends AccessibilityService {
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         parser(info, texts, map);
         for (String text : texts) {
-            for (String ct : completeTexts) {
+            for (String ct : PubText.completeTexts) {
                 if (ct.equals(text)) {
                     //                    L.i("点击..结束..因为文字 :" + text);
                     performViewClick(map.get(text));
@@ -584,56 +429,6 @@ public class MyAccessibilityService extends AccessibilityService {
         ServiceHolder.getInstance().setService(this);
     }
 
-    @Override
-    protected boolean onKeyEvent(KeyEvent event) {
-        if (DEBUG_TAG) {
-            L.i("onKeyEvent");
-        }
-        int key = event.getKeyCode();
-        switch (key) {
-            case KeyEvent.KEYCODE_VOLUME_DOWN:
-                if (isTestGame) {
-                    AudioManager audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-                    int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    L.i("----音量：" + currentVolume);
-                    // L.i("音量降低333:" +
-                    // VolumeHelper.getInstance().getCurrentVolume(AudioManager.STREAM_RING));
-                    // L.i("音量降低444:" +
-                    // VolumeHelper.getInstance().getCurrentVolume(AudioManager.STREAM_SYSTEM));
-                    // int cur = VolumeHelper.getInstance().getCurrentVolume(AudioManager.STREAM_RING);
-                    if (currentVolume == 0) {
-                        mHandler.removeCallbacks(mRunnableNext);
-                        mHandler.removeCallbacks(mRunnableReStart);
-                        mHandler.removeCallbacks(mRunnableNoLei);
-                    }
-                }
-                break;
-            case KeyEvent.KEYCODE_VOLUME_UP:
-                if (isTestGame) {
-
-                    AudioManager audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-                    int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    L.i("+++++音量：" + currentVolume);
-                    // L.i("音量增加333:" +
-                    // VolumeHelper.getInstance().getCurrentVolume(AudioManager.STREAM_RING));
-                    // L.i("音量增加444:" +
-                    // VolumeHelper.getInstance().getCurrentVolume(AudioManager.STREAM_SYSTEM));
-                    // int cur = VolumeHelper.getInstance().getCurrentVolume(AudioManager.STREAM_RING);
-                    if (currentVolume > 0) {
-                        // 继续下一个关
-                        mHandler.post(mRunnableNext);
-                        // 右边的重新进入
-                        mHandler.post(mRunnableReStart);
-                        // 疲劳弹框
-                        mHandler.post(mRunnableNoLei);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-        return super.onKeyEvent(event);
-    }
 
     /**
      * 设置当前的页面

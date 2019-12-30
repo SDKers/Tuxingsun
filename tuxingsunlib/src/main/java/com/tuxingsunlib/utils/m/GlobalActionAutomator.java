@@ -2,17 +2,14 @@ package com.tuxingsunlib.utils.m;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
+import android.annotation.TargetApi;
 import android.graphics.Path;
-import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.ViewConfiguration;
 
-import androidx.annotation.RequiresApi;
-
 import com.tuxingsunlib.utils.ServiceHolder;
-import com.tuxingsunlib.utils.m.VolatileBox;
 
 /**
  * @Copyright © 2019 sanbo Inc. All rights reserved. @Description: 来源:
@@ -31,38 +28,38 @@ public class GlobalActionAutomator {
     return performGlobalAction(AccessibilityService.GLOBAL_ACTION_RECENTS);
   }
 
-  @RequiresApi(24)
+  @TargetApi(24)
   public static boolean splitScreen() {
     return performGlobalAction(AccessibilityService.GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   public static boolean click(int x, int y) {
     return press(x, y, ViewConfiguration.getTapTimeout() + 50);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   public static boolean press(int x, int y, int delay) {
     return gesture(0, delay, new int[] {x, y});
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   public static boolean longClick(int x, int y) {
     return gesture(0, ViewConfiguration.getLongPressTimeout() + 200, new int[] {x, y});
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   public static boolean swipe(int x1, int y1, int x2, int y2, int delay) {
     return gesture(0, delay, new int[] {x1, y1}, new int[] {x2, y2});
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   public static boolean gesture(long start, long duration, int[]... points) {
     Path path = pointsToPath(points);
     return gestures(new GestureDescription.StrokeDescription(path, start, duration));
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   public static boolean gestures(GestureDescription.StrokeDescription... strokes) {
     if (ServiceHolder.getInstance().getService() == null) {
       return false;
@@ -74,7 +71,7 @@ public class GlobalActionAutomator {
     return gesturesWithoutHandler(builder.build());
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.N)
+  @TargetApi(24)
   static boolean gesturesWithoutHandler(GestureDescription description) {
     prepareLooperIfNeeded();
     final VolatileBox<Boolean> result = new VolatileBox<>(false);

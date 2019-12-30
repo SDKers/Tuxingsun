@@ -83,12 +83,12 @@ public class AppList {
 
                 if (!TextUtils.isEmpty(packageName)) {
                   if (pm.getLaunchIntentForPackage(packageName) != null) {
-                    //                                        L.i("===>" + packageName);
+                    // L.i("===>" + packageName);
                     if (!appList.contains(packageName)) {
                       appList.add(packageName);
                     }
                   } else {
-                    //                                        L.i("getAppListByPM===>"+packageName);
+                    //   L.i("getAppListByPM===>"+packageName);
                   }
                 }
               }

@@ -5,7 +5,8 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.tuxingsunlib.MyAccessibilityService;
-import com.tuxingsunlib.utils.MContexts;
+import com.tuxingsunlib.utils.ContextHolder;
+import com.tuxingsunlib.utils.content.PubText;
 import com.tuxingsunlib.utils.log.L;
 
 import java.util.ArrayList;
@@ -20,64 +21,6 @@ import java.util.Map;
  */
 public class AccessibilityImpl {
 
-    // 安装包名
-    public static ArrayList<String> INSTALL_PKGS =
-            new ArrayList<String>(
-                    Arrays.asList(
-                            "com.samsung.android.packageinstaller",
-                            "com.android.packageinstaller",
-                            "com.google.android.packageinstaller",
-                            "com.lenovo.safecenter",
-                            "com.lenovo.security",
-                            "com.htc.htcappopsguarddog",
-                            "com.xiaomi.gamecenter",
-                            "cn.goapk.market",
-                            //                            "com.vivo.secime.service",
-                            //                            "com.coloros.safecenter",
-                            //                            "com.bbk.account",
-                            "com.samsung.android.packageinstaller" // 三星
-                    ));
-    private static Context mContext = null;
-    // 安装页面
-    private static ArrayList<String> INSTALL_PAGES =
-            new ArrayList<String>(
-                    Arrays.asList(
-                            "com.androidtalle.packageinstaller.PackageInsrActivity",
-                            "com.android.packageinstaller.OppoPackageInstallerActivity",
-                            "com.android.packageinstaller.InstallAppProgress",
-                            "com.lenovo.safecenter.install.InstallerActivity",
-                            "com.lenovo.safecenter.defense.install.fragment.InstallInterceptActivity",
-                            "com.lenovo.safecenter.install.InstallProgress",
-                            "com.lenovo.safecenter.install.InstallAppProgress",
-                            "com.android.packageinstaller.PackageInstallerActivity",
-                            "com.lenovo.safecenter.defense.fragment.install.InstallInterceptActivity",
-                            "com.htc.htcappopsguarddog.HtcAppOpsDetailsActivity"));
-
-    // 卸载包名
-    private static ArrayList<String> REMOVE_PKGS = new ArrayList<String>();
-
-    // 密码框
-    private static ArrayList<String> PWD_DIALOG_PKG =
-            new ArrayList<String>(
-                    Arrays.asList(
-                            "com.bbk.account" // vivo  Z1、vivo Y69A、vivo X21A
-                            ,
-                            "com.coloros.safecenter" // vivo R9s、oppo  A59S
-                            ,
-                            "com.oppo.usercenter" // vivo R9s、oppo  A59S
-                            ,
-                            "com.vivo.secime.service" // vivo的手机--暂时不记得机型
-                    ));
-
-    // 安装关键字.(识别是警告框),暂时针对特殊的手机机型vivo Y23L (4.4.4)
-    private static ArrayList<String> INSTALL_STEP_TEXT =
-            new ArrayList<String>(
-                    Arrays.asList(
-                            "好" // 好
-                    ));
-    private static ArrayList<String> DIALOG_TEXT =
-            new ArrayList<String>(Arrays.asList("“电脑端未...”", "需要您验证身份后安装。", "取消", "安装"));
-
     /**
      * 根据包名判断任务
      *
@@ -91,14 +34,8 @@ public class AccessibilityImpl {
         if (node == null) {
             return;
         }
-        if (mContext == null) {
-            if (context != null) {
-                mContext = context.getApplicationContext();
-            } else {
-                mContext = MContexts.CONTEXT;
-            }
-        }
-        if (mContext == null) {
+        context = ContextHolder.getContext(context);
+        if (context == null) {
             if (MyAccessibilityService.DEBUG_TAG) {
                 L.w("AccessibilityImpl.process failed. the context is null!");
             }
@@ -116,13 +53,13 @@ public class AccessibilityImpl {
         }
         //    }
         // 2.判断具体操作
-        if (INSTALL_PKGS.contains(pkgName) || INSTALL_PAGES.contains(className)) {
+        if (PubText.INSTALL_PKGS.contains(pkgName) || PubText.INSTALL_PAGES.contains(className)) {
             if (MyAccessibilityService.DEBUG_TAG) {
                 L.d("will 安装~~");
             }
             // 安装
             installApp(event, node);
-        } else if (REMOVE_PKGS.contains(pkgName)) {
+        } else if (PubText.REMOVE_PKGS.contains(pkgName)) {
             if (MyAccessibilityService.DEBUG_TAG) {
                 L.d("will 卸载~~");
             }
@@ -200,16 +137,16 @@ public class AccessibilityImpl {
      */
     private static boolean hasPasswordArea(AccessibilityNodeInfo node) {
         String pkgName = node.getPackageName().toString();
-        if (PWD_DIALOG_PKG.contains(pkgName)) {
+        if (PubText.PWD_DIALOG_PKG.contains(pkgName)) {
             return true;
         }
         List<String> result = new ArrayList<String>();
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         MyAccessibilityService.parser(node, result, map);
 
-        return result.contains(DIALOG_TEXT.get(1))
-                && result.contains(DIALOG_TEXT.get(2))
-                && result.contains(DIALOG_TEXT.get(3));
+        return result.contains(PubText.DIALOG_TEXT.get(1))
+                && result.contains(PubText.DIALOG_TEXT.get(2))
+                && result.contains(PubText.DIALOG_TEXT.get(3));
     }
 
     /**
@@ -223,7 +160,7 @@ public class AccessibilityImpl {
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         MyAccessibilityService.parser(node, arr, map);
         for (String key : arr) {
-            if (INSTALL_STEP_TEXT.contains(key)) {
+            if (PubText.INSTALL_STEP_TEXT.contains(key)) {
                 MyAccessibilityService.performViewClick(map.get(key));
                 return true;
             }

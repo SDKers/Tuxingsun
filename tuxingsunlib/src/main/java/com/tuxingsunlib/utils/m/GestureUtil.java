@@ -53,7 +53,7 @@ public class GestureUtil {
   //    }
   //    Intent intent = new Intent();
   //    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-  //    intent.setClass(MContexts.CONTEXT, ScreenCaptureActivity.class);
+  //    intent.setClass(ContextHolder.CONTEXT, ScreenCaptureActivity.class);
   //    PendingIntent.getActivity(App.get(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT).send();
   // }
 
