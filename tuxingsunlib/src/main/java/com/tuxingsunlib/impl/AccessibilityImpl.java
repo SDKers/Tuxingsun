@@ -16,8 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Copyright © 2018 Analysys Inc. All rights reserved. @Description: TODO @Version: 1.0 @Create:
- * 2018/10/22 17:23 @Author: sanbo
+ * @Copyright © 2018 Analysys Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2018/10/22 17:23
+ * @Author: sanbo
  */
 public class AccessibilityImpl {
 

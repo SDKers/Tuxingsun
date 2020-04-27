@@ -15,6 +15,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @Copyright © 2020 sanbo Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2020/4/27 17:49
+ * @author: sanbo
+ */
 public class AppList {
 
   /** 1.PackageManager .getInstalledPackages(0) 此方法在华为、oppo手机上，把权限禁止后，就不能正确获取到已安装应用列表了。 */
@@ -113,9 +120,9 @@ public class AppList {
       PackageManager pm = context.getPackageManager();
       // 查询所有已经安装的应用程序
       List<ApplicationInfo> appInfos =
-          pm.getInstalledApplications(
-              PackageManager.GET_UNINSTALLED_PACKAGES); // GET_UNINSTALLED_PACKAGES代表已删除，但还有安装目录的
-      List<ApplicationInfo> applicationInfos = new ArrayList<ApplicationInfo>();
+              pm.getInstalledApplications(
+                      PackageManager.GET_UNINSTALLED_PACKAGES); // GET_UNINSTALLED_PACKAGES代表已删除，但还有安装目录的
+//      List<ApplicationInfo> applicationInfos = new ArrayList<ApplicationInfo>();
 
       // 创建一个类别为CATEGORY_LAUNCHER的该包名的Intent
       Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
@@ -123,7 +130,7 @@ public class AppList {
 
       // 通过getPackageManager()的queryIntentActivities方法遍历,得到所有能打开的app的packageName
       List<ResolveInfo> resolveinfoList =
-          context.getPackageManager().queryIntentActivities(resolveIntent, 0);
+              context.getPackageManager().queryIntentActivities(resolveIntent, 0);
       Set<String> allowPackages = new HashSet();
       for (ResolveInfo resolveInfo : resolveinfoList) {
         allowPackages.add(resolveInfo.activityInfo.packageName);

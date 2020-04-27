@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @Copyright © 2020 sanbo Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2020/4/27 17:46
+ * @author: sanbo
+ */
 public class PubText {
 
     // 安装包名
@@ -46,12 +53,9 @@ public class PubText {
             new ArrayList<String>(
                     Arrays.asList(
                             "com.bbk.account" // vivo  Z1、vivo Y69A、vivo X21A
-                            ,
-                            "com.coloros.safecenter" // vivo R9s、oppo  A59S
-                            ,
-                            "com.oppo.usercenter" // vivo R9s、oppo  A59S
-                            ,
-                            "com.vivo.secime.service" // vivo的手机--暂时不记得机型
+                            , "com.coloros.safecenter" // vivo R9s、oppo  A59S
+                            , "com.oppo.usercenter" // vivo R9s、oppo  A59S
+                            , "com.vivo.secime.service" // vivo的手机--暂时不记得机型
                     ));
 
     // 安装关键字.(识别是警告框),暂时针对特殊的手机机型vivo Y23L (4.4.4)

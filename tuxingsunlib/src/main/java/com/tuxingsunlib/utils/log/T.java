@@ -4,8 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 
 /**
- * @Copyright © 2015 sanbo Inc. All rights reserved. @Description: Toast同一管理类 多log堆积时候
- * 显示最后一个 @Version: 1.0 @Create: 2015年6月28日 下午1:41:16 @Author: sanbo
+ * @Copyright © 2015 sanbo Inc. All rights reserved.
+ * @Description: Toast同一管理类 多log堆积时候显示最后一个
+ * @Version: 1.0
+ * @Create: 2015年6月28日 下午1:41:16
+ * @Author: sanbo
  */
 public class T {
   public static final int LENGTH_SHORT = android.widget.Toast.LENGTH_SHORT;

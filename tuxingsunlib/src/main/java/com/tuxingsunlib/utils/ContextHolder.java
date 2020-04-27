@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * @Copyright © 2017 sanbo Inc. All rights reserved. @Description: TODO @Version: 1.0 @Create:
- * 2017/11/23 15:25
+ * @Copyright © 2017 sanbo Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2017/11/23 15:25
  * @author: safei
  * @mail: sanbo.xyz@gmail.com
  */

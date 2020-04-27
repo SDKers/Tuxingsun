@@ -9,8 +9,11 @@ import android.view.ViewConfiguration;
 import com.tuxingsunlib.utils.ServiceHolder;
 
 /**
- * @Copyright © 2019 sanbo Inc. All rights reserved. @Description: 来源
- * https://github.com/hfutxqd/ClickClick @Version: 1.0 @Create: 2019/1/24 22:28 @Author: sanbo
+ * @Copyright © 2019 sanbo Inc. All rights reserved.
+ * @Description: 来源 https://github.com/hfutxqd/ClickClick
+ * @Version: 1.0
+ * @Create: 2019/1/24 22:28
+ * @Author: sanbo
  */
 @TargetApi(24)
 public class GestureUtil {
@@ -46,16 +49,6 @@ public class GestureUtil {
     }
   }
 
-  // @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-  // public static void screenshot(String str) throws PendingIntent.CanceledException {
-  //    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-  //        throw new UnsupportedOperationException();
-  //    }
-  //    Intent intent = new Intent();
-  //    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-  //    intent.setClass(ContextHolder.CONTEXT, ScreenCaptureActivity.class);
-  //    PendingIntent.getActivity(App.get(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT).send();
-  // }
 
   static GestureDescription makeTap(float x, float y, long dur) {
     Path path = new Path();

@@ -33,8 +33,11 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @Copyright © 2017 sanbo Inc. All rights reserved. @Description: 跟App相关的辅助类 @Version: 1.0 @Create:
- * 2017-6-2 下午9:56:23 @Author: sanbo
+ * @Copyright © 2017 sanbo Inc. All rights reserved.
+ * @Description: 跟App相关的辅助类
+ * @Version: 1.0
+ * @Create: 2017-6-2 下午9:56:23
+ * @Author: sanbo
  */
 public class AppUtils {
 

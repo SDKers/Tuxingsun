@@ -3,8 +3,11 @@ package com.tuxingsunlib.utils;
 import android.accessibilityservice.AccessibilityService;
 
 /**
- * @Copyright © 2019 Analysys Inc. All rights reserved. @Description 服务帮助类 @Version 1.0 @Create
- * 2019/1/15 15:55 @Author sanbo
+ * @Copyright © 2019 Analysys Inc. All rights reserved.
+ * @Description 服务帮助类
+ * @Version 1.0
+ * @Create 2019/1/15 15:55
+ * @Author sanbo
  */
 public class ServiceHolder {
 

@@ -7,6 +7,13 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+/**
+ * @Copyright © 2020 sanbo Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2020/4/27 17:50
+ * @author: sanbo
+ */
 public class ScreenSize {
   public static int[] getScreenSize(Context context) {
     int[] size = new int[2];

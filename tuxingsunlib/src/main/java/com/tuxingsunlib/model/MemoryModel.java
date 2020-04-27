@@ -13,8 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Copyright © 2018 Analysys Inc. All rights reserved. @Description TODO @Version 1.0 @Create
- * 2018/11/30 10:29 @Author sanbo
+ * @Copyright © 2018 Analysys Inc. All rights reserved.
+ * @Description TODO
+ * @Version 1.0
+ * @Create 2018/11/30 10:29
+ * @Author sanbo
  */
 public class MemoryModel {
     private String mPackageName = null;
@@ -69,14 +72,6 @@ public class MemoryModel {
         }
         return null;
     }
-
-    //    public Map<String, List<AccessibilityNodeInfo>> getXpathAndNotes() {
-    //        return xpathAndNodes;
-    //    }
-    //
-    //    public String toStringXpath() {
-    //        return xpathAndNodes.toString();
-    //    }
 
     public List<AccessibilityNodeInfo> getCheckableNode() {
         return checkableNode;

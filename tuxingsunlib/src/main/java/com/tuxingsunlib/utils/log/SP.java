@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Build;
 
 /**
- * @Copyright © 2015 sanbo Inc. All rights reserved. @Description: Toast同一管理类 @Version: 1.0 @Create:
- * 2015年6月28日 下午1:41:16 @Author: sanbo
+ * @Copyright © 2015 sanbo Inc. All rights reserved.
+ * @Description: Toast同一管理类
+ * @Version: 1.0
+ * @Create: 2015年6月28日 下午1:41:16
+ * @Author: sanbo
  */
 public class SP {
 

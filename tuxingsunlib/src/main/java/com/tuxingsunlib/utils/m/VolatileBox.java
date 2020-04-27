@@ -1,8 +1,11 @@
 package com.tuxingsunlib.utils.m;
 
 /**
- * @Copyright © 2019 sanbo Inc. All rights reserved. @Description: TODO @Version: 1.0 @Create:
- * 2019/1/24 22:52 @Author: sanbo
+ * @Copyright © 2019 sanbo Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2019/1/24 22:52
+ * @Author: sanbo
  */
 public class VolatileBox<T> {
 

@@ -12,8 +12,11 @@ import android.view.ViewConfiguration;
 import com.tuxingsunlib.utils.ServiceHolder;
 
 /**
- * @Copyright © 2019 sanbo Inc. All rights reserved. @Description: 来源:
- * https://github.com/chenshunlin/Auto.js @Version: 1.0 @Create: 2019/1/24 22:23 @Author: sanbo
+ * @Copyright © 2019 sanbo Inc. All rights reserved.
+ * @Description: 来源: https://github.com/chenshunlin/Auto.js
+ * @Version: 1.0
+ * @Create: 2019/1/24 22:23
+ * @Author: sanbo
  */
 public class GlobalActionAutomator {
   public static boolean back() {
