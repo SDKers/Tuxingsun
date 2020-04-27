@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.tuxingsunlib.MyAccessibilityService;
+import com.tuxingsunlib.SanboAbility;
 import com.tuxingsunlib.utils.ContextHolder;
 import com.tuxingsunlib.utils.content.PubText;
 import com.tuxingsunlib.utils.log.L;
@@ -38,7 +38,7 @@ public class AccessibilityImpl {
         }
         context = ContextHolder.getContext(context);
         if (context == null) {
-            if (MyAccessibilityService.DEBUG_TAG) {
+            if (SanboAbility.DEBUG_TAG) {
                 L.w("AccessibilityImpl.process failed. the context is null!");
             }
             return;
@@ -51,18 +51,18 @@ public class AccessibilityImpl {
         // 1. oppo/vivo会密码窗
         //        if (Rom.isVivo() || Rom.isVivo()) {
         if (hasPasswordArea(node)) {
-            MyAccessibilityService.fillPassword(node);
+            SanboAbility.fillPassword(node);
         }
         //    }
         // 2.判断具体操作
         if (PubText.INSTALL_PKGS.contains(pkgName) || PubText.INSTALL_PAGES.contains(className)) {
-            if (MyAccessibilityService.DEBUG_TAG) {
+            if (SanboAbility.DEBUG_TAG) {
                 L.d("will 安装~~");
             }
             // 安装
             installApp(event, node);
         } else if (PubText.REMOVE_PKGS.contains(pkgName)) {
-            if (MyAccessibilityService.DEBUG_TAG) {
+            if (SanboAbility.DEBUG_TAG) {
                 L.d("will 卸载~~");
             }
             // 卸载
@@ -125,7 +125,7 @@ public class AccessibilityImpl {
      * @param node
      */
     private static void processInstall(AccessibilityEvent event, AccessibilityNodeInfo node) {
-        MyAccessibilityService.setupClickForInstall(node);
+        SanboAbility.setupClickForInstall(node);
     }
     /** ************************************************************************************* */
     /** *************************** 三级任务: 详细实现方式 ************************************* */
@@ -144,7 +144,7 @@ public class AccessibilityImpl {
         }
         List<String> result = new ArrayList<String>();
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
-        MyAccessibilityService.parser(node, result, map);
+        SanboAbility.parser(node, result, map);
 
         return result.contains(PubText.DIALOG_TEXT.get(1))
                 && result.contains(PubText.DIALOG_TEXT.get(2))
@@ -160,10 +160,10 @@ public class AccessibilityImpl {
     private static boolean hasInstallTexts(AccessibilityNodeInfo node) {
         List<String> arr = new ArrayList<String>();
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
-        MyAccessibilityService.parser(node, arr, map);
+        SanboAbility.parser(node, arr, map);
         for (String key : arr) {
             if (PubText.INSTALL_STEP_TEXT.contains(key)) {
-                MyAccessibilityService.performViewClick(map.get(key));
+                SanboAbility.performViewClick(map.get(key));
                 return true;
             }
         }

@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.tuxingsunlib.MyAccessibilityService;
+import com.tuxingsunlib.SanboAbility;
 import com.tuxingsunlib.utils.log.L;
 
 import java.util.ArrayList;
@@ -350,7 +350,7 @@ public class MemoryModel {
         }
         if (hasText) {
             String pa = "//" + clazz + xpath.toString() + "]";
-            if (MyAccessibilityService.DEBUG_TAG) {
+            if (SanboAbility.DEBUG_TAG) {
                 L.v("xpath:" + pa);
             }
             List<AccessibilityNodeInfo> nodes = new ArrayList<AccessibilityNodeInfo>();
@@ -360,7 +360,7 @@ public class MemoryModel {
             nodes.add(info);
             xpathAndNodes.put(pa, nodes);
 
-            if (MyAccessibilityService.DEBUG_TAG) {
+            if (SanboAbility.DEBUG_TAG) {
                 L.v("xpath:" + xpathAndNodes.toString());
             }
         }

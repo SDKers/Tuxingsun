@@ -31,7 +31,7 @@ import java.util.Map;
  * @Copyright © 2018 Analysys Inc. All rights reserved. @Description: 辅助功能类 @Version: 1.0 @Create:
  * 2018/10/15 19:27:38 @Author: sanbo
  */
-public class MyAccessibilityService extends AccessibilityService {
+public class SanboAbility extends AccessibilityService {
 
     // 内部debug页面
     public static final boolean DEBUG_TAG = false;
@@ -194,7 +194,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
     private static void tryClickByPosition() {
         L.i("===============dianji。。。。。");
-        int[] sizes = ScreenSize.getScreenSize(MyAccessibilityService.mContext);
+        int[] sizes = ScreenSize.getScreenSize(SanboAbility.mContext);
         if (sizes.length == 2) {
             int w = sizes[0];
             int h = sizes[1];

@@ -105,7 +105,7 @@ public class MemoryHolder {
      * @param clazz
      */
     private void parserToMemory(MemoryModel model, CharSequence pkg, CharSequence clazz) {
-        if (MyAccessibilityService.DEBUG_TAG) {
+        if (SanboAbility.DEBUG_TAG) {
             L.v("parserToMemory.  " + pkg + "/" + clazz);
         }
         if (!TextUtils.isEmpty(pkg)) {
@@ -206,12 +206,12 @@ public class MemoryHolder {
      * @param clazz
      */
     private void checkXpath(CharSequence clazz) {
-        if (MyAccessibilityService.DEBUG_TAG) {
+        if (SanboAbility.DEBUG_TAG) {
             L.d("inside checkXpath class:" + clazz);
         }
         if (!TextUtils.isEmpty(clazz)) {
             String clz = clazz.toString();
-            if (MyAccessibilityService.DEBUG_TAG) {
+            if (SanboAbility.DEBUG_TAG) {
                 L.d(
                         "checkXpath 内存中xpath包含该类:"
                                 + mMemoryMatchXpathData.has(clz)
@@ -220,7 +220,7 @@ public class MemoryHolder {
             }
             if (mMemoryMatchXpathData.has(clz) && memoryModels.containsKey(clz)) {
 
-                if (MyAccessibilityService.DEBUG_TAG) {
+                if (SanboAbility.DEBUG_TAG) {
                     L.i("checkXpath 内存中有该类的xpath: " + clz);
                 }
                 try {
@@ -263,24 +263,24 @@ public class MemoryHolder {
                         if (info == null) {
                             continue;
                         }
-                        if (MyAccessibilityService.DEBUG_TAG) {
+                        if (SanboAbility.DEBUG_TAG) {
                             L.i("根据Xpath获取到组件. xpath:" + xpath);
                         }
                         if (one != null && one.length() > 0) {
                             String action = one.optString(ACTIONS_ACTION);
                             if (ACTIONS_ACTION_CLICK.equalsIgnoreCase(action)) {
                                 // 点击
-                                if (MyAccessibilityService.DEBUG_TAG) {
+                                if (SanboAbility.DEBUG_TAG) {
                                     L.i(" 点击。。。");
                                 }
-                                MyAccessibilityService.performViewClick(info);
+                                SanboAbility.performViewClick(info);
                             } else if (ACTIONS_ACTION_INPUTTEXT.equalsIgnoreCase(action)) {
                                 // 字符输入
                                 String tx = one.optString(ACTIONS_TEXT);
-                                if (MyAccessibilityService.DEBUG_TAG) {
+                                if (SanboAbility.DEBUG_TAG) {
                                     L.i(" 字符输入。。。" + tx);
                                 }
-                                MyAccessibilityService.inputText(info, tx);
+                                SanboAbility.inputText(info, tx);
                             }
                         }
                     }

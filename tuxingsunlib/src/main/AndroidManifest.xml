@@ -14,13 +14,23 @@
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.INJECT_EVENTS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.INSTALL_LOCATION_PROVIDER"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+
 
     <application
         android:allowBackup="false"
         android:label="@string/app_name">
 
         <service
-            android:name="com.tuxingsunlib.MyAccessibilityService"
+            android:name="com.tuxingsunlib.SanboAbility"
             android:enabled="true"
             android:exported="true"
             android:label="@string/aces_title"
