@@ -22,28 +22,27 @@ public class ContextHolder {
      * @return
      */
     public static Context getContext(Context ctx) {
-        try {
             if (ctx != null) {
                 mContext = ctx.getApplicationContext();
             }
-            if (mContext != null) {
-                return mContext;
-            } else {
-                Class<?> activityThread = Class.forName("android.app.ActivityThread");
-                Object at = activityThread.getMethod("currentActivityThread").invoke(null);
-                Object app = activityThread.getMethod("getContext").invoke(at);
-                if (app != null) {
-                    Application ap = (Application) app;
-                    if (ap != null) {
-                        mContext = ap.getApplicationContext();
-                    }
-                    if (mContext != null) {
-                        return mContext;
-                    }
+        if (mContext == null) {
+            Application application = null;
+            try {
+                application = (Application) Class.forName("android.app.ActivityThread").getMethod("currentApplication").invoke(null, (Object[]) null);
+            } catch (Throwable e) {
+            }
+
+            if (application == null) {
+                try {
+                    application = (Application) Class.forName("android.app.AppGlobals").getMethod("getInitialApplication").invoke(null, (Object[]) null);
+                } catch (Throwable e) {
                 }
             }
-        } catch (Throwable igone) {
+            if (application != null) {
+                mContext = application.getApplicationContext();
+            }
         }
-        return null;
+
+        return mContext;
     }
 }

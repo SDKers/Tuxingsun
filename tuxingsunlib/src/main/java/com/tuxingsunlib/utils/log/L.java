@@ -55,13 +55,14 @@ import javax.xml.transform.stream.StreamSource;
  * 6.格式化输出.
  * 7.支持XML/JSON/Map/Array等更多对象打印
  *              </pre>
- * @Version: 6.1
+ * @Version: 7.0
  * @Create: 2019-04-30 11:28
  * @Author: sanbo
  */
 public class L {
 
-  // 是否使用
+
+  //是否使用
   private static final boolean INTERNAL_CONTROL_ENABLE = true;
   // 是否打印bug.建议在application中调用init接口初始化
   public static boolean USER_DEBUG;

@@ -1,4 +1,4 @@
-package com.tuxingsunlib.utils;
+package com.tuxingsunlib.utils.apps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.text.TextUtils;
 
+import com.tuxingsunlib.utils.ShellHelper;
+import com.tuxingsunlib.utils.apps.SystemAppUtils;
 import com.tuxingsunlib.utils.log.L;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.Set;
  * @Create: 2020/4/27 17:49
  * @author: sanbo
  */
-public class AppList {
+public class AppListUtils {
 
   /** 1.PackageManager .getInstalledPackages(0) 此方法在华为、oppo手机上，把权限禁止后，就不能正确获取到已安装应用列表了。 */
   public static List<String> getAppListByGetInstalledPackages(Context context) {
@@ -155,6 +157,19 @@ public class AppList {
     return appList;
   }
 
+  /**
+   * 获取应用程序名称
+   */
+  public static String getAppName(Context context) {
+    try {
+      PackageManager packageManager = context.getPackageManager();
+      PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+      int labelRes = packageInfo.applicationInfo.labelRes;
+      return context.getResources().getString(labelRes);
+    } catch (PackageManager.NameNotFoundException e) {
+    }
+    return null;
+  }
   public static List<String> getApps(Context context) {
     List<String> apps = new ArrayList<String>();
     if (context == null) {
@@ -189,7 +204,7 @@ public class AppList {
     }
     if (apps.size() > 0) {
       for (String packageName : apps) {
-        if (AppUtils.checkAppIsForeground(context, packageName)) {
+        if (SystemAppUtils.checkAppIsForeground(context, packageName)) {
           if (!runningPackage.contains(packageName)) {
             runningPackage.add(packageName);
           }

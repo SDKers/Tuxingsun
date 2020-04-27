@@ -13,7 +13,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.tuxingsunlib.impl.AccessibilityImpl;
-import com.tuxingsunlib.utils.AppList;
+import com.tuxingsunlib.utils.apps.AppListUtils;
 import com.tuxingsunlib.utils.ScreenSize;
 import com.tuxingsunlib.utils.ServiceHolder;
 import com.tuxingsunlib.utils.content.PubText;
@@ -23,7 +23,6 @@ import com.tuxingsunlib.utils.log.SP;
 import com.tuxingsunlib.utils.m.GestureUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -219,13 +218,13 @@ public class MyAccessibilityService extends AccessibilityService {
     private static boolean hasComplete(AccessibilityNodeInfo info) {
         /** 1. 判断安装列表 */
         if (APP_LIST != -1) {
-            int currentSize = AppList.getApps(mContext).size();
+            int currentSize = AppListUtils.getApps(mContext).size();
             if (APP_LIST != currentSize) {
                 APP_LIST = currentSize;
                 return true;
             }
         } else {
-            APP_LIST = AppList.getApps(mContext).size();
+            APP_LIST = AppListUtils.getApps(mContext).size();
         }
         /** 2. 文字匹配 */
         List<String> texts = new ArrayList<String>();
@@ -410,7 +409,7 @@ public class MyAccessibilityService extends AccessibilityService {
         try {
             getInstallPwd();
             if (APP_LIST == -1) {
-                APP_LIST = AppList.getApps(this).size();
+                APP_LIST = AppListUtils.getApps(this).size();
             }
             if (event != null) {
                 AccessibilityNodeInfo info = getRootInActiveWindow();
