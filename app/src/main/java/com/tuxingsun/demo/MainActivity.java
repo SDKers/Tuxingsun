@@ -6,8 +6,6 @@ import android.view.View;
 
 import com.tuxingsunlib.SanboAbility;
 import com.tuxingsunlib.utils.AccessibilityHelper;
-import com.tuxingsunlib.utils.fw.FloatToast;
-import com.tuxingsunlib.utils.log.L;
 import com.tuxingsunlib.utils.log.T;
 
 /**
@@ -34,9 +32,9 @@ public class MainActivity extends Activity {
 
         if (AccessibilityHelper.isAccessibilitySettingsOn(MainActivity.this, SanboAbility.class)) {
           AccessibilityHelper.openAccessibilityService(MainActivity.this);
-        } else {
-          T.show("已经打开。。。");
+        } else {开。。。");
         }
+          T.show("已经打
         break;
       case R.id.btn3:
         new Thread(new Runnable() {
