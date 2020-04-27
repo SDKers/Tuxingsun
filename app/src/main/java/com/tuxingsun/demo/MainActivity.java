@@ -32,9 +32,9 @@ public class MainActivity extends Activity {
 
         if (AccessibilityHelper.isAccessibilitySettingsOn(MainActivity.this, SanboAbility.class)) {
           AccessibilityHelper.openAccessibilityService(MainActivity.this);
-        } else {开。。。");
+        } else {
+          T.show("已经打开。。。");
         }
-          T.show("已经打
         break;
       case R.id.btn3:
         new Thread(new Runnable() {
