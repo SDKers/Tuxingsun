@@ -3,6 +3,8 @@ package com.tuxingsunlib.utils.log;
 import android.content.Context;
 import android.os.Handler;
 
+import com.tuxingsunlib.utils.ContextHolder;
+
 /**
  * @Copyright © 2015 sanbo Inc. All rights reserved.
  * @Description: Toast同一管理类 多log堆积时候显示最后一个
@@ -27,7 +29,10 @@ public class T {
   private static Context mContext = null;
 
   private T() {}
-
+  
+  static {
+    mContext = ContextHolder.getContext(null);
+  }
   public static void init(Context context) {
     mContext = context;
   }
