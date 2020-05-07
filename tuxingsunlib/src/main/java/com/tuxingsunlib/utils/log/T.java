@@ -17,14 +17,11 @@ import com.tuxingsunlib.utils.ContextHolder;
  * @Author: sanbo
  */
 public class T {
-    private static android.widget.Toast mToast;
-    
     private T() {
     }
     
-    
     private static Context mContext = ContextHolder.getContext(null);
-    private static Handler testHandler = new Handler(Looper.getMainLooper()) {
+    private static Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -34,17 +31,16 @@ public class T {
         }
     };
     
-    
     public static void show(final String message) {
         Message ms = new Message();
         ms.what = 1;
         Bundle bundle = new Bundle();
         bundle.putString("test", message);
         ms.setData(bundle);
-        
-        if (testHandler.hasMessages(1)) {
-            testHandler.removeMessages(1);
+    
+        if (mHandler.hasMessages(1)) {
+            mHandler.removeMessages(1);
         }
-        testHandler.sendMessageAtFrontOfQueue(ms);
+        mHandler.sendMessageAtFrontOfQueue(ms);
     }
 }
