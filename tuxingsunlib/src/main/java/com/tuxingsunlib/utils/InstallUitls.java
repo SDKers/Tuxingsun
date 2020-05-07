@@ -12,7 +12,7 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 
 public class InstallUitls {
-
+    
     /**
      * 通过隐式意图调用系统安装程序安装APK
      */
@@ -34,7 +34,7 @@ public class InstallUitls {
         }
         context.startActivity(intent);
     }
-
+    
     /**
      * 智能安装
      *
@@ -47,7 +47,7 @@ public class InstallUitls {
         localIntent.setDataAndType(uri, "application/vnd.android.package-archive");
         context.startActivity(localIntent);
     }
-
+    
     /**
      * 检查系统设置：是否允许安装来自未知来源的应用
      */
@@ -61,7 +61,7 @@ public class InstallUitls {
         }
         return canInstall;
     }
-
+    
     /**
      * 跳转到系统设置：允许安装来自未知来源的应用
      */

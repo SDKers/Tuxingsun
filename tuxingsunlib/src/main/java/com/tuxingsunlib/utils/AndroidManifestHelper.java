@@ -42,10 +42,10 @@ public class AndroidManifestHelper {
             // xml没有声明
         } catch (Throwable e) {
         }
-
+        
         return false;
     }
-
+    
     /**
      * 判断AndroidManifest中是否声明BroadcastReceiver
      *
@@ -67,10 +67,10 @@ public class AndroidManifestHelper {
             // xml没有声明
         } catch (Throwable e) {
         }
-
+        
         return false;
     }
-
+    
     /**
      * 判断AndroidManifest中是否声明contextResolver
      *
@@ -92,10 +92,10 @@ public class AndroidManifestHelper {
             // xml没有声明
         } catch (Throwable e) {
         }
-
+        
         return false;
     }
-
+    
     /**
      * 判断AndroidManifest中是否声明该服务
      *
@@ -117,7 +117,7 @@ public class AndroidManifestHelper {
         }
         return false;
     }
-
+    
     /**
      * 判断AndroidManifest是否包含权限
      *
@@ -130,7 +130,7 @@ public class AndroidManifestHelper {
             if (context == null || TextUtils.isEmpty(permission)) {
                 return false;
             }
-
+            
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(),
                     PackageManager.GET_PERMISSIONS);
             if (packageInfo == null) {
@@ -143,12 +143,12 @@ public class AndroidManifestHelper {
             if (Arrays.asList(permissions).contains(permission)) {
                 return true;
             }
-
+            
         } catch (Throwable e) {
         }
         return false;
     }
-
+    
     /**
      * 获取AndroidManifest中service的label
      *
@@ -176,7 +176,7 @@ public class AndroidManifestHelper {
         }
         return label;
     }
-
+    
     /**
      * 判断是否两个类是否是有祖、父类关系
      *

@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 public class TopActivityUtils {
-
+    
     /**
      * 获取栈顶activity名字
      *
@@ -30,7 +30,7 @@ public class TopActivityUtils {
                 .topActivity
                 .getClassName();
     }
-
+    
     @SuppressWarnings("unchecked")
     public static String getNowActivity(Application app) {
         Field f;
@@ -61,7 +61,7 @@ public class TopActivityUtils {
         }
         return result;
     }
-
+    
     private static Object getActivityThread(Context context) {
         try {
             Class<?> activityThread = Class.forName("android.app.ActivityThread");
@@ -72,7 +72,7 @@ public class TopActivityUtils {
             if (thread != null) {
                 return thread;
             }
-
+            
             // context.@mLoadedApk.@mActivityThread
             Field mLoadedApk = context.getClass().getField("mLoadedApk");
             mLoadedApk.setAccessible(true);
@@ -84,7 +84,7 @@ public class TopActivityUtils {
             throw new RuntimeException("Failed to get mActivityThread from context: " + context);
         }
     }
-
+    
     /**
      * 获取栈顶activity名字
      *
@@ -110,7 +110,7 @@ public class TopActivityUtils {
         }
         return topActivityClassName;
     }
-
+    
     /**
      * 检查activity是否为栈顶activity
      *
@@ -119,7 +119,7 @@ public class TopActivityUtils {
      * @return
      */
     public static boolean isTopActivity(Context context, String activityName) {
-
+        
         try {
             String topActivity = getTopActivityName(context);
             if (!TextUtils.isEmpty(activityName) && topActivity.equalsIgnoreCase(activityName)) {
@@ -132,7 +132,7 @@ public class TopActivityUtils {
         L.d("isTopActivity  false");
         return false;
     }
-
+    
     /**
      * 检查activity是否为栈顶activity
      *
@@ -142,7 +142,7 @@ public class TopActivityUtils {
      * @return
      */
     public static boolean isTopActivity(Context context, String packageName, String activityName) {
-
+        
         try {
             String topActivity = getTopActivityName(context);
             String pack = context.getPackageName();
@@ -157,5 +157,5 @@ public class TopActivityUtils {
         }
         return false;
     }
-
+    
 }

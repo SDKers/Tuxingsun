@@ -50,7 +50,7 @@ public class AccessibilityHelper {
             L.e("请在AndroidManifest中声明权限: android.permission.BIND_ACCESSIBILITY_SERVICE");
             return false;
         }
-
+        
         // 数据格式:com.example.bira/com.bira.helper.MyAccessibilityService
         final String service = context.getPackageName() + "/" + clazz.getCanonicalName();
         /*
@@ -62,14 +62,14 @@ public class AccessibilityHelper {
         } catch (Settings.SettingNotFoundException e) {
             return false;
         }
-
+        
         /*
          * 4.确定服务列表中是否勾选
          */
         if (accessibilityEnabled == 1) {
             String settingValue = Settings.Secure.getString(context.getApplicationContext().getContentResolver(),
                     Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
-
+            
             if (TextUtils.isEmpty(settingValue)) {
                 return false;
             }
@@ -86,7 +86,7 @@ public class AccessibilityHelper {
         }
         return false;
     }
-
+    
     /**
      * 打开辅助功能
      *
@@ -96,12 +96,12 @@ public class AccessibilityHelper {
 //        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        context.startActivity(intent);
-
+        
         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK
                 | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         context.startActivity(intent);
     }
-
-
+    
+    
 }

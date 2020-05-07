@@ -24,7 +24,7 @@ import java.util.Map;
  * @Author sanbo
  */
 public class MemoryHolder {
-
+    
     public static String ACTIONS_ACTIONS = "actions";
     public static String ACTIONS_ACTIVITY = "activity";
     public static String ACTIONS_XPATH = "xpath";
@@ -42,14 +42,14 @@ public class MemoryHolder {
      */
     private List<MemoryModel> nullModels = new ArrayList<MemoryModel>();
     private JSONObject mMemoryMatchXpathData = new JSONObject();
-
+    
     private MemoryHolder() {
     }
-
+    
     public static MemoryHolder getInstance() {
         return Holder.INSTANCE;
     }
-
+    
     /**
      * Xpath
      *
@@ -74,7 +74,7 @@ public class MemoryHolder {
             }
         }
     }
-
+    
     /**
      * 解析数据到对象中
      *
@@ -82,21 +82,21 @@ public class MemoryHolder {
      * @param info
      */
     public void parser(AccessibilityEvent event, AccessibilityNodeInfo info) {
-
+        
         // 获取类名
         CharSequence pkg = event.getPackageName();
         CharSequence clazz = event.getClassName();
-
+        
         MemoryModel model = new MemoryModel();
         // 循环解析对象
         parserNode(info, model);
         // 解析对象到内存中
         parserToMemory(model, pkg, clazz);
-
+        
         // xpath 解析
         checkXpath(clazz);
     }
-
+    
     /**
      * 解析的东西放内存里
      *
@@ -119,7 +119,7 @@ public class MemoryHolder {
             nullModels.add(model);
         }
     }
-
+    
     /**
      * 循环遍历
      *
@@ -135,14 +135,14 @@ public class MemoryHolder {
         CharSequence clazz = info.getClassName();
         CharSequence pkg = info.getPackageName();
         boolean isClickable = info.isClickable();
-
+        
         model.setInfo(info);
         if (Build.VERSION.SDK_INT > 17) {
             if (info.isEditable()) {
                 model.setEditableNode(info);
             }
         }
-
+        
         if (!TextUtils.isEmpty(text) && info != null) {
             model.setTextAndNode(text.toString(), info);
         } else {
@@ -157,7 +157,7 @@ public class MemoryHolder {
                 model.setNullClickableNode(info);
             }
         }
-
+        
         if (!TextUtils.isEmpty(pkg)) {
             model.setPackageName(pkg);
         }
@@ -170,7 +170,7 @@ public class MemoryHolder {
         if (info.isChecked()) {
             model.setCheckedNode(info);
         }
-
+        
         if (info.isScrollable()) {
             model.setScrollableNode(info);
         }
@@ -189,7 +189,7 @@ public class MemoryHolder {
         if (info.isFocused()) {
             model.setFocusedNode(info);
         }
-
+        
         // 遍历子控件
         int count = info.getChildCount();
         if (count > 0) {
@@ -199,7 +199,7 @@ public class MemoryHolder {
             }
         }
     }
-
+    
     /**
      * xpath解析对比
      *
@@ -219,7 +219,7 @@ public class MemoryHolder {
                                 + memoryModels.containsKey(clz));
             }
             if (mMemoryMatchXpathData.has(clz) && memoryModels.containsKey(clz)) {
-
+                
                 if (SanboAbility.DEBUG_TAG) {
                     L.i("checkXpath 内存中有该类的xpath: " + clz);
                 }
@@ -234,30 +234,30 @@ public class MemoryHolder {
                         return;
                     }
                     // L.i("4444444");
-
+                    
                     for (int i = 0; i < actions.length(); i++) {
-
+                        
                         JSONObject one = actions.getJSONObject(i);
                         String xpath = one.optString(ACTIONS_XPATH);
                         if (TextUtils.isEmpty(xpath)) {
                             return;
                         }
                         // L.d("memoryModels: " + memoryModels.toString());
-
+                        
                         MemoryModel targetModel = memoryModels.get(clz);
                         // L.d("targetModel: " + targetModel.toStringXpath());
-
+                        
                         // debug();
                         List<AccessibilityNodeInfo> infos = targetModel.getNodeByXpath(xpath);
-
+                        
                         if (infos == null) {
                             continue;
                         }
-
+                        
                         if (infos.size() == 0) {
                             continue;
                         }
-
+                        
                         // 获取目标组件
                         AccessibilityNodeInfo info = infos.get(0);
                         if (info == null) {
@@ -290,7 +290,7 @@ public class MemoryHolder {
             }
         }
     }
-
+    
     /**
      * 是否有dialog
      *
@@ -308,7 +308,7 @@ public class MemoryHolder {
         }
         return false;
     }
-
+    
     //    /**
     //     * 测试方法
     //     */
@@ -336,7 +336,7 @@ public class MemoryHolder {
     //        }
     //        L.i(xpath + "=====>" + infos.toString());
     //    }
-
+    
     /**
      * 清除内存中的数据
      *
@@ -347,7 +347,7 @@ public class MemoryHolder {
         nullModels.clear();
         return memoryModels.size() == 0 && nullModels.size() == 0;
     }
-
+    
     private static class Holder {
         public static final MemoryHolder INSTANCE = new MemoryHolder();
     }

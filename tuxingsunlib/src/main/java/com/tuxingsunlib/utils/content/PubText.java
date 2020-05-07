@@ -12,7 +12,7 @@ import java.util.List;
  * @author: sanbo
  */
 public class PubText {
-
+    
     // 安装包名
     public static ArrayList<String> INSTALL_PKGS =
             new ArrayList<String>(
@@ -44,10 +44,10 @@ public class PubText {
                             "com.android.packageinstaller.PackageInstallerActivity",
                             "com.lenovo.safecenter.defense.fragment.install.InstallInterceptActivity",
                             "com.htc.htcappopsguarddog.HtcAppOpsDetailsActivity"));
-
+    
     // 卸载包名
     public static ArrayList<String> REMOVE_PKGS = new ArrayList<String>();
-
+    
     // 密码框
     public static ArrayList<String> PWD_DIALOG_PKG =
             new ArrayList<String>(
@@ -57,7 +57,7 @@ public class PubText {
                             , "com.oppo.usercenter" // vivo R9s、oppo  A59S
                             , "com.vivo.secime.service" // vivo的手机--暂时不记得机型
                     ));
-
+    
     // 安装关键字.(识别是警告框),暂时针对特殊的手机机型vivo Y23L (4.4.4)
     public static ArrayList<String> INSTALL_STEP_TEXT =
             new ArrayList<String>(
@@ -164,7 +164,7 @@ public class PubText {
                             // 360异常警告
                             ,
                             "暂不处理"
-
+                            
                             // 需要账号. 刺猬猫阅读
                             //  , "直接登录"
                             // 需要账号,瘦瘦-减肥

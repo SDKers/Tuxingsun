@@ -18,74 +18,75 @@ import java.io.OutputStream;
  * @Author: sanbo
  */
 public class ShellHelper {
-  private ShellHelper() {}
-
-  public static ShellHelper getInstatnce() {
-
-    return Holder.INSTANCE;
-  }
-
-  public String shell(String cmd) {
-    String result = "";
-    Process proc = null;
-    BufferedInputStream in = null;
-    BufferedReader br = null;
-    InputStreamReader is = null;
-    InputStream ii = null;
-    StringBuilder sb = new StringBuilder();
-    DataOutputStream os = null;
-    OutputStream pos = null;
-    try {
-      proc = Runtime.getRuntime().exec("sh");
-      pos = proc.getOutputStream();
-      os = new DataOutputStream(pos);
-
-      os.write(cmd.getBytes());
-      os.writeBytes("\n");
-      os.flush();
-      //exitValue
-      os.writeBytes("exit\n");
-      os.flush();
-      ii = proc.getInputStream();
-      in = new BufferedInputStream(ii);
-      is = new InputStreamReader(in);
-      br = new BufferedReader(is);
-      String line = "";
-      while ((line = br.readLine()) != null) {
-        sb.append(line).append("\n");
-      }
-      if (sb.length() > 0) {
-        return sb.substring(0, sb.length() - 1);
-      }
-      result = String.valueOf(sb);
-      if (!TextUtils.isEmpty(result)) {
-        result = result.trim();
-      }
-    } catch (Throwable e) {
-    } finally {
-      safeClose(pos);
-      safeClose(ii);
-      safeClose(br);
-      safeClose(is);
-      safeClose(in);
-      safeClose(os);
+    private ShellHelper() {
     }
-
-    return result;
-  }
-
-  private void safeClose(Closeable able) {
-    if (able != null) {
-      try {
-        able.close();
-      } catch (Throwable e) {
-      }
+    
+    public static ShellHelper getInstatnce() {
+        
+        return Holder.INSTANCE;
     }
-  }
-
-
-  private static class Holder {
-    private static final ShellHelper INSTANCE = new ShellHelper();
-  }
-
+    
+    public String shell(String cmd) {
+        String result = "";
+        Process proc = null;
+        BufferedInputStream in = null;
+        BufferedReader br = null;
+        InputStreamReader is = null;
+        InputStream ii = null;
+        StringBuilder sb = new StringBuilder();
+        DataOutputStream os = null;
+        OutputStream pos = null;
+        try {
+            proc = Runtime.getRuntime().exec("sh");
+            pos = proc.getOutputStream();
+            os = new DataOutputStream(pos);
+            
+            os.write(cmd.getBytes());
+            os.writeBytes("\n");
+            os.flush();
+            //exitValue
+            os.writeBytes("exit\n");
+            os.flush();
+            ii = proc.getInputStream();
+            in = new BufferedInputStream(ii);
+            is = new InputStreamReader(in);
+            br = new BufferedReader(is);
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            if (sb.length() > 0) {
+                return sb.substring(0, sb.length() - 1);
+            }
+            result = String.valueOf(sb);
+            if (!TextUtils.isEmpty(result)) {
+                result = result.trim();
+            }
+        } catch (Throwable e) {
+        } finally {
+            safeClose(pos);
+            safeClose(ii);
+            safeClose(br);
+            safeClose(is);
+            safeClose(in);
+            safeClose(os);
+        }
+        
+        return result;
+    }
+    
+    private void safeClose(Closeable able) {
+        if (able != null) {
+            try {
+                able.close();
+            } catch (Throwable e) {
+            }
+        }
+    }
+    
+    
+    private static class Holder {
+        private static final ShellHelper INSTANCE = new ShellHelper();
+    }
+    
 }

@@ -17,59 +17,59 @@ import com.tuxingsunlib.utils.ServiceHolder;
  */
 @TargetApi(24)
 public class GestureUtil {
-
-  public static void tap(String x, String y) {
-    GestureDescription description = makeTap(Float.valueOf(x), Float.valueOf(y), 50);
-    AccessibilityService service = ServiceHolder.getInstance().getService();
-    if (service != null) {
-      service.dispatchGesture(description, null, null);
+    
+    public static void tap(String x, String y) {
+        GestureDescription description = makeTap(Float.valueOf(x), Float.valueOf(y), 50);
+        AccessibilityService service = ServiceHolder.getInstance().getService();
+        if (service != null) {
+            service.dispatchGesture(description, null, null);
+        }
     }
-  }
-
-  public static void longClick(String x, String y) {
-    GestureDescription description =
-        makeTap(Float.valueOf(x), Float.valueOf(y), ViewConfiguration.getLongPressTimeout() + 200);
-    AccessibilityService service = ServiceHolder.getInstance().getService();
-    if (service != null) {
-      service.dispatchGesture(description, null, null);
+    
+    public static void longClick(String x, String y) {
+        GestureDescription description =
+                makeTap(Float.valueOf(x), Float.valueOf(y), ViewConfiguration.getLongPressTimeout() + 200);
+        AccessibilityService service = ServiceHolder.getInstance().getService();
+        if (service != null) {
+            service.dispatchGesture(description, null, null);
+        }
     }
-  }
-
-  public static void swipe(String x, String y, String x2, String y2, int duration) {
-    GestureDescription description =
-        GestureUtil.makeSwipe(
-            Float.valueOf(x),
-            Float.valueOf(y),
-            Float.valueOf(x2),
-            Float.valueOf(y2),
-            Integer.valueOf(duration));
-    AccessibilityService service = ServiceHolder.getInstance().getService();
-    if (service != null) {
-      service.dispatchGesture(description, null, null);
+    
+    public static void swipe(String x, String y, String x2, String y2, int duration) {
+        GestureDescription description =
+                GestureUtil.makeSwipe(
+                        Float.valueOf(x),
+                        Float.valueOf(y),
+                        Float.valueOf(x2),
+                        Float.valueOf(y2),
+                        Integer.valueOf(duration));
+        AccessibilityService service = ServiceHolder.getInstance().getService();
+        if (service != null) {
+            service.dispatchGesture(description, null, null);
+        }
     }
-  }
-
-
-  static GestureDescription makeTap(float x, float y, long dur) {
-    Path path = new Path();
-    path.moveTo(x, y);
-    return new GestureDescription.Builder()
-        .addStroke(new GestureDescription.StrokeDescription(path, 0, dur))
-        .build();
-  }
-
-  static GestureDescription makeSwipe(float x, float y, float x2, float y2, int dur) {
-    Path path = new Path();
-    path.moveTo(x, y);
-    path.lineTo(x2, y2);
-    return new GestureDescription.Builder()
-        .addStroke(new GestureDescription.StrokeDescription(path, 0, dur))
-        .build();
-  }
-
-  static GestureDescription makeGesture(Path path, int dur) {
-    return new GestureDescription.Builder()
-        .addStroke(new GestureDescription.StrokeDescription(path, 0, dur))
-        .build();
-  }
+    
+    
+    static GestureDescription makeTap(float x, float y, long dur) {
+        Path path = new Path();
+        path.moveTo(x, y);
+        return new GestureDescription.Builder()
+                .addStroke(new GestureDescription.StrokeDescription(path, 0, dur))
+                .build();
+    }
+    
+    static GestureDescription makeSwipe(float x, float y, float x2, float y2, int dur) {
+        Path path = new Path();
+        path.moveTo(x, y);
+        path.lineTo(x2, y2);
+        return new GestureDescription.Builder()
+                .addStroke(new GestureDescription.StrokeDescription(path, 0, dur))
+                .build();
+    }
+    
+    static GestureDescription makeGesture(Path path, int dur) {
+        return new GestureDescription.Builder()
+                .addStroke(new GestureDescription.StrokeDescription(path, 0, dur))
+                .build();
+    }
 }

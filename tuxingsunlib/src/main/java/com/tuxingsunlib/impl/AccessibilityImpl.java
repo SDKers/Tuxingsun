@@ -22,7 +22,7 @@ import java.util.Map;
  * @Author: sanbo
  */
 public class AccessibilityImpl {
-
+    
     /**
      * 根据包名判断任务
      *
@@ -32,7 +32,7 @@ public class AccessibilityImpl {
      */
     public static void process(
             Context context, AccessibilityEvent event, AccessibilityNodeInfo node) {
-
+        
         if (node == null) {
             return;
         }
@@ -45,9 +45,9 @@ public class AccessibilityImpl {
         }
         String pkgName = node.getPackageName().toString();
         String className = node.getClassName().toString();
-
+        
         // 0. 手机禁止安装
-
+        
         // 1. oppo/vivo会密码窗
         //        if (Rom.isVivo() || Rom.isVivo()) {
         if (hasPasswordArea(node)) {
@@ -68,7 +68,7 @@ public class AccessibilityImpl {
             // 卸载
             removeApp(event, node);
         } else {
-
+            
             // 兼容包名不对的
             if (!hasInstallTexts(node)) {
                 //                if (MyAccessibilityService.DEBUG_TAG) {
@@ -81,11 +81,11 @@ public class AccessibilityImpl {
             processInstall(event, node);
         }
     }
-
+    
     /** ************************************************************************************* */
     /** ********************************** 第一级任务 ************************************* */
     /** ************************************************************************************* */
-
+    
     /**
      * 安装app
      *
@@ -93,11 +93,11 @@ public class AccessibilityImpl {
      * @param node
      */
     private static void installApp(AccessibilityEvent event, AccessibilityNodeInfo node) {
-
+        
         // 处理安装中的处理
         processInstall(event, node);
     }
-
+    
     /**
      * 卸载APP
      *
@@ -106,7 +106,7 @@ public class AccessibilityImpl {
      */
     private static void removeApp(AccessibilityEvent event, AccessibilityNodeInfo node) {
     }
-
+    
     /**
      * 不支持的处理方式，保存到本地(包括手机型号，版本号，app名称，app版本号，页面信息，甚至可以包括截图)，服务器mysql-ok可以上传
      *
@@ -115,11 +115,11 @@ public class AccessibilityImpl {
     private static void saveToNative(AccessibilityEvent event) {
         String pkgName = event.getPackageName().toString();
     }
-
+    
     /** ************************************************************************************* */
     /** *************************** 二级任务:安装细节方式 ************************************* */
     /** ************************************************************************************* */
-
+    
     /**
      * @param event
      * @param node
@@ -130,7 +130,7 @@ public class AccessibilityImpl {
     /** ************************************************************************************* */
     /** *************************** 三级任务: 详细实现方式 ************************************* */
     /** ************************************************************************************* */
-
+    
     /**
      * 判断是否有密码框
      *
@@ -145,12 +145,12 @@ public class AccessibilityImpl {
         List<String> result = new ArrayList<String>();
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         SanboAbility.parser(node, result, map);
-
+        
         return result.contains(PubText.DIALOG_TEXT.get(1))
                 && result.contains(PubText.DIALOG_TEXT.get(2))
                 && result.contains(PubText.DIALOG_TEXT.get(3));
     }
-
+    
     /**
      * 判断是否有关键字
      *

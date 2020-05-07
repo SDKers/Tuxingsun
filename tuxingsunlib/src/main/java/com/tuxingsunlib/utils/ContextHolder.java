@@ -12,9 +12,9 @@ import android.content.Context;
  * @mail: sanbo.xyz@gmail.com
  */
 public class ContextHolder {
-
+    
     private static Context mContext = null;
-
+    
     /**
      * 获取Context
      *
@@ -22,16 +22,16 @@ public class ContextHolder {
      * @return
      */
     public static Context getContext(Context ctx) {
-            if (ctx != null) {
-                mContext = ctx.getApplicationContext();
-            }
+        if (ctx != null) {
+            mContext = ctx.getApplicationContext();
+        }
         if (mContext == null) {
             Application application = null;
             try {
                 application = (Application) Class.forName("android.app.ActivityThread").getMethod("currentApplication").invoke(null, (Object[]) null);
             } catch (Throwable e) {
             }
-
+            
             if (application == null) {
                 try {
                     application = (Application) Class.forName("android.app.AppGlobals").getMethod("getInitialApplication").invoke(null, (Object[]) null);
@@ -42,7 +42,7 @@ public class ContextHolder {
                 mContext = application.getApplicationContext();
             }
         }
-
+        
         return mContext;
     }
 }

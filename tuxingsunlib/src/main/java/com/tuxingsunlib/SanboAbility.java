@@ -32,7 +32,7 @@ import java.util.Map;
  * 2018/10/15 19:27:38 @Author: sanbo
  */
 public class SanboAbility extends AccessibilityService {
-
+    
     // 内部debug页面
     public static final boolean DEBUG_TAG = false;
     private static final String OV_PASSWORD_KEY = "OV_PASSWORD_KEY";
@@ -43,7 +43,7 @@ public class SanboAbility extends AccessibilityService {
     private static volatile boolean isInstalling = false;
     // 手机安装列表个数
     private static volatile int APP_LIST = -1;
-
+    
     /**
      * 获取页面包名和类名
      *
@@ -52,7 +52,7 @@ public class SanboAbility extends AccessibilityService {
     public static String getComponent() {
         return curComponent;
     }
-
+    
     /**
      * 点击安装
      *
@@ -67,12 +67,12 @@ public class SanboAbility extends AccessibilityService {
             isInstalling = false;
             return;
         }
-
+        
         // 2. 标识开启
         if (!isInstalling) {
             isInstalling = true;
         }
-
+        
         if (isInstalling) {
             // 3. 滑动就滑动
             //            if ("android.widget.ScrollView".equals(node.getClassName())) {
@@ -89,7 +89,7 @@ public class SanboAbility extends AccessibilityService {
             if (DEBUG_TAG) {
                 L.d("setupClickForInstall 发现的文字: " + texts.toString());
             }
-
+            
             // 5. 处理OPPO手机页面不能识别的情况， 底部的安装和取消是背景
             // 修改为运行中的app 导航跳过
             if (Rom.isOppo()) {
@@ -97,10 +97,10 @@ public class SanboAbility extends AccessibilityService {
                 boolean hasAdWarnning = false;
                 // oppo 无风险安装
                 boolean hasJustInstall = false;
-
+                
                 String clazzName = "";
                 for (String tt : texts) {
-
+                    
                     try {
                         clazzName = map.get(tt).getPackageName().toString();
                         if ("com.android.packageinstaller".equals(clazzName)) {
@@ -139,7 +139,7 @@ public class SanboAbility extends AccessibilityService {
                     }
                 }
             }
-
+            
             // 6. 处理vivo手机警告安装情况
             if (Rom.isVivo()) {
                 // 详情见 imgs/vivo_dump_3563595110006917732.png 和 imgs/vivo_dump_7742802218739782953.png
@@ -185,20 +185,20 @@ public class SanboAbility extends AccessibilityService {
             } // end with for earchna
         }
     }
-
+    
     /** ************************************************************************************* */
     /** ************************************ 工具方法 **************************************** */
     /**
      * ************************************************************************************
      */
-
+    
     private static void tryClickByPosition() {
         L.i("===============dianji。。。。。");
         int[] sizes = ScreenSize.getScreenSize(SanboAbility.mContext);
         if (sizes.length == 2) {
             int w = sizes[0];
             int h = sizes[1];
-
+            
             int x = w * 2 / 3;
             int y = h - 150;
             L.i("原始分辨率[%dx%d]--点击[%d-%d]", w, h, x, y);
@@ -208,7 +208,7 @@ public class SanboAbility extends AccessibilityService {
             }
         }
     }
-
+    
     /**
      * 判断是否结束
      *
@@ -244,7 +244,7 @@ public class SanboAbility extends AccessibilityService {
         }
         return false;
     }
-
+    
     /**
      * 界面搜索结果
      *
@@ -254,7 +254,7 @@ public class SanboAbility extends AccessibilityService {
      */
     public static void parser(
             AccessibilityNodeInfo info, List<String> result, Map<String, AccessibilityNodeInfo> map) {
-
+        
         try {
             CharSequence cc = info.getText();
             if (cc != null) {
@@ -275,7 +275,7 @@ public class SanboAbility extends AccessibilityService {
                 }
                 //                parserNull(info);
             }
-
+            
             // 貌似不好使。为兼容OPPO 7以下版本
             if (Build.VERSION.SDK_INT > 17) {
                 if (DEBUG_TAG) {
@@ -292,7 +292,7 @@ public class SanboAbility extends AccessibilityService {
             }
         }
         try {
-
+            
             if (DEBUG_TAG) {
                 L.v("parser:" + info.toString());
             }
@@ -312,7 +312,7 @@ public class SanboAbility extends AccessibilityService {
             }
         }
     }
-
+    
     /**
      * 填写密码
      *
@@ -324,11 +324,11 @@ public class SanboAbility extends AccessibilityService {
         if (editText == null) {
             return;
         }
-
+        
         if ("android.widget.EditText".equals(editText.getClassName())) {
             inputText(editText, password);
         }
-
+        
         List<AccessibilityNodeInfo> nodeInfoList = node.findAccessibilityNodeInfosByText("确定");
         for (AccessibilityNodeInfo nodeInfo : nodeInfoList) {
             nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -350,7 +350,7 @@ public class SanboAbility extends AccessibilityService {
             nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         }
     }
-
+    
     /**
      * 模拟输入文字
      *
@@ -376,7 +376,7 @@ public class SanboAbility extends AccessibilityService {
             nodeInfo.performAction(AccessibilityNodeInfo.ACTION_PASTE);
         }
     }
-
+    
     /**
      * 模拟点击事件，全局只有一个点击事件
      *
@@ -397,7 +397,7 @@ public class SanboAbility extends AccessibilityService {
             nodeInfo = nodeInfo.getParent();
         }
     }
-
+    
     @TargetApi(16)
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -422,13 +422,13 @@ public class SanboAbility extends AccessibilityService {
             L.e(Log.getStackTraceString(e));
         }
     }
-
+    
     @Override
     public void onInterrupt() {
         ServiceHolder.getInstance().setService(this);
     }
-
-
+    
+    
     /**
      * 设置当前的页面
      *
@@ -437,7 +437,7 @@ public class SanboAbility extends AccessibilityService {
     private void initPageName(AccessibilityNodeInfo info) {
         curComponent = info.getPackageName() + "/" + info.getClassName();
     }
-
+    
     /**
      * 接续和自动化安装跳过导航入口
      *
@@ -462,7 +462,7 @@ public class SanboAbility extends AccessibilityService {
             AccessibilityImpl.process(this, event, info);
         }
     }
-
+    
     /**
      * 获取安装密码
      */

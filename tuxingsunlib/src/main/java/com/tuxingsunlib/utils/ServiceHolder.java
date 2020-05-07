@@ -10,24 +10,25 @@ import android.accessibilityservice.AccessibilityService;
  * @Author sanbo
  */
 public class ServiceHolder {
-
-  private AccessibilityService mService = null;
-
-  private ServiceHolder() {}
-
-  public static ServiceHolder getInstance() {
-    return Holder.instance;
-  }
-
-  public AccessibilityService getService() {
-    return mService;
-  }
-
-  public void setService(AccessibilityService service) {
-    this.mService = service;
-  }
-
-  private static class Holder {
-    private static ServiceHolder instance = new ServiceHolder();
-  }
+    
+    private AccessibilityService mService = null;
+    
+    private ServiceHolder() {
+    }
+    
+    public static ServiceHolder getInstance() {
+        return Holder.instance;
+    }
+    
+    public AccessibilityService getService() {
+        return mService;
+    }
+    
+    public void setService(AccessibilityService service) {
+        this.mService = service;
+    }
+    
+    private static class Holder {
+        private static ServiceHolder instance = new ServiceHolder();
+    }
 }
