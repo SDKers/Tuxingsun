@@ -34,7 +34,7 @@ import java.util.Map;
 public class SanboAbility extends AccessibilityService {
     
     // 内部debug页面
-    public static final boolean DEBUG_TAG = false;
+    public static final boolean DEBUG_TAG = true;
     private static final String OV_PASSWORD_KEY = "OV_PASSWORD_KEY";
     private static String curComponent = null;
     private static String password = "x12345678";

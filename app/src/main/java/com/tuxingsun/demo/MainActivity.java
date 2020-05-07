@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
             case R.id.btn2:
                 
                 try {
-                    if (AccessibilityHelper.isAccessibilitySettingsOn(MainActivity.this, SanboAbility.class)) {
+                    if (!AccessibilityHelper.isAccessibilitySettingsOn(MainActivity.this, SanboAbility.class)) {
                         AccessibilityHelper.openAccessibilityService(MainActivity.this);
                     } else {
                         T.show("已经打开。。。");

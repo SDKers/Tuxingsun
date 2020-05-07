@@ -124,11 +124,11 @@ public class L {
             // 是否接受shell控制打印
             isShellControl = true;
             // 是否打印详细log,详细打印调用的堆栈
-            isNeedCallstackInfo = true;
+            isNeedCallstackInfo = false;
             // 是否按照条形框输出,有包裹域的输出
-            isNeedWrapper = true;
+            isNeedWrapper = false;
             // 是否格式化展示,主要针对JSON
-            isFormat = true;
+            isFormat = false;
             mPattern = Pattern.compile("%", Pattern.CASE_INSENSITIVE);
             // 默认tag
             DEFAULT_TAG = "sanbo";
