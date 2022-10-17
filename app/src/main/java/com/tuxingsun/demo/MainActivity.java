@@ -1,13 +1,16 @@
 package com.tuxingsun.demo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import com.tuxingsunlib.SanboAbility;
-import com.tuxingsunlib.utils.AccessibilityHelper;
-import com.tuxingsunlib.utils.log.L;
-import com.tuxingsunlib.utils.log.T;
+import com.txscore.TuxingsunAbility;
+import com.txscore.utils.AccessibilityHelper;
+import com.txscore.utils.log.L;
+import com.txscore.utils.log.T;
+
+import java.lang.reflect.Method;
 
 /**
  * @Copyright © 2020 sanbo Inc. All rights reserved.
@@ -17,41 +20,44 @@ import com.tuxingsunlib.utils.log.T;
  * @author: sanbo
  */
 public class MainActivity extends Activity {
-    
+    private CRelativeLayout mLayout = null;
+    private final String TAG = "MainActivity";
+    private static Context mContext = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-    }
-    
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn1:
-                AccessibilityHelper.openAccessibilityService(this);
-                break;
-            case R.id.btn2:
-                
+        mContext = this;
+        mLayout = new CRelativeLayout(this, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 try {
-                    if (!AccessibilityHelper.isAccessibilitySettingsOn(MainActivity.this, SanboAbility.class)) {
-                        AccessibilityHelper.openAccessibilityService(MainActivity.this);
-                    } else {
-                        T.show("已经打开。。。");
+                    Object thisObj = MainActivity.this;
+                    int id = v.getId();
+                    Method method = thisObj.getClass().getDeclaredMethod("button" + id);
+                    if (method != null) {
+                        method.setAccessible(true);
+                        method.invoke(thisObj);
                     }
                 } catch (Throwable e) {
                     L.e(e);
                 }
-                break;
-            case R.id.btn3:
-                break;
-            case R.id.btn4:
-                break;
-            case R.id.btn5:
-                break;
-            case R.id.btn6:
-                break;
-            default:
-                break;
+            }
+        }, 4, 10);
+        setContentView(mLayout);
+    }
+
+    public void button1() {
+        AccessibilityHelper.openAccessibilityService(mContext);
+    }
+
+    public static void button2() {
+        if (!AccessibilityHelper.isAccessibilitySettingsOn(mContext, TuxingsunAbility.class)) {
+            T.show("还未打开辅助功能～～");
+        } else {
+            T.show("已经打开。。。");
         }
     }
-    
+
+
 }

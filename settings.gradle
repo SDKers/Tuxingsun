@@ -1,2 +1,2 @@
-include ':app', ':tuxingsunlib'
-rootProject.name = 'Tuxingsun'
+include ':app', ':core'
+rootProject.name = 'tuxingsun'

@@ -1,4 +1,4 @@
-<resources>
-    <string name="app_name">tuxingsun</string>
-    <string name="welcome">欢迎使用土行孙</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">土行孙</string>
+    <string name="welcome" tools:ignore="MissingTranslation">欢迎使用土行孙</string>
 </resources>

@@ -2,25 +2,53 @@
 
 buildscript {
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/repository/google' }
-        maven { url 'http://maven.aliyun.com/repository/gradle-plugin' }
-        jcenter { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        // jcenter() { url "http://jcenter.bintray.com/" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        // central
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/central' }
+        // jcenter
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        // public
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        //google
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        //gradle-plugin
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+        //apache snapshots
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/apache-snapshots' }
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:4.2.2'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/repository/google' }
-        maven { url 'http://maven.aliyun.com/repository/gradle-plugin' }
-        jcenter { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        // jcenter() { url "http://jcenter.bintray.com/" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        // central
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/central' }
+        // jcenter
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        // public
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        //google
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        //gradle-plugin
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+        //apache snapshots
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/apache-snapshots' }
     }
 }
 

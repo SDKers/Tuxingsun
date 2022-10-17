@@ -1,21 +1,23 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.tuxingsun.demo"
         minSdkVersion 14
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     dexOptions {
         preDexLibraries false
         maxProcessCount 8
@@ -50,6 +52,4 @@ tasks.withType(Javadoc) {
 }
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':core')
 }
