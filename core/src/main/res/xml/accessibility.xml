@@ -12,4 +12,17 @@
 
     <!-- 会过滤掉home/back等虚拟键-->
     <!--android:accessibilityFlags="flagRequestFilterKeyEvents"-->
-    <!--android:accessibilityFeedbackType="feedbackAllMask"--><!--android:accessibilityFlags="flagDefault|flagReportViewIds|flagIncludeNotImportantViews|flagRequestAccessibilityButton|flagRequestEnhancedWebAccessibility|flagRequestFilterKeyEvents|flagRequestFingerprintGestures|flagRetrieveInteractiveWindows"--><!--android:canRetrieveWindowContent="true"--><!--accessibilityFlags 中 flagRequestTouchExplorationMode 会导致无法点击 -->
+    <!--android:accessibilityFeedbackType="feedbackAllMask"-->
+    <!--
+        android:accessibilityFlags="flagDefault
+        |flagReportViewIds
+        |flagIncludeNotImportantViews
+        |flagRequestAccessibilityButton
+        |flagRequestEnhancedWebAccessibility
+        |flagRequestFilterKeyEvents
+        |flagRequestFingerprintGestures
+        |flagRetrieveInteractiveWindows"
+
+        -->
+    <!--android:canRetrieveWindowContent="true"-->
+    <!--accessibilityFlags 中 flagRequestTouchExplorationMode 会导致无法点击 -->

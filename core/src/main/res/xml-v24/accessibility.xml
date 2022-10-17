@@ -10,4 +10,19 @@
     android:description="@string/aces_description"
     android:notificationTimeout="0" />
 
-    <!-- 会过滤掉home/back等虚拟键--><!--android:accessibilityFlags="flagRequestFilterKeyEvents"--><!--android:accessibilityEventTypes="typeAllMask"--><!--android:accessibilityFeedbackType="feedbackAllMask"--><!--android:accessibilityFlags="flagDefault|flagReportViewIds|flagIncludeNotImportantViews|flagRequestAccessibilityButton|flagRequestEnhancedWebAccessibility|flagRequestFilterKeyEvents|flagRequestFingerprintGestures|flagRetrieveInteractiveWindows"--><!--android:canRetrieveWindowContent="true"--><!--accessibilityFlags 中 flagRequestTouchExplorationMode 会导致无法点击 --><!--accessibilityFlags 中 flagRequestTouchExplorationMode 会导致无法点击 -->
+    <!-- 会过滤掉home/back等虚拟键-->
+    <!--android:accessibilityFlags="flagRequestFilterKeyEvents"-->
+    <!--android:accessibilityEventTypes="typeAllMask"-->
+    <!--android:accessibilityFeedbackType="feedbackAllMask"-->
+    <!--android:accessibilityFlags="flagDefault
+        |flagReportViewIds
+        |flagIncludeNotImportantViews
+        |flagRequestAccessibilityButton
+        |flagRequestEnhancedWebAccessibility
+        |flagRequestFilterKeyEvents
+        |flagRequestFingerprintGestures
+        |flagRetrieveInteractiveWindows"
+        -->
+    <!--android:canRetrieveWindowContent="true"-->
+    <!--accessibilityFlags 中 flagRequestTouchExplorationMode 会导致无法点击 -->
+    <!--accessibilityFlags 中 flagRequestTouchExplorationMode 会导致无法点击 -->
