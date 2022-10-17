@@ -1,11 +1,11 @@
-package com.txscore.model;
+package com.txs.model;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.txscore.TuxingsunAbility;
-import com.txscore.utils.log.L;
+import com.txs.TuxingsunAbility;
+import com.txs.utils.log.L;
 
 import java.util.ArrayList;
 import java.util.HashMap;

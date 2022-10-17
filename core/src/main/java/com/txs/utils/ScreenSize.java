@@ -1,4 +1,4 @@
-package com.txscore.utils;
+package com.txs.utils;
 
 import android.content.Context;
 import android.graphics.Point;

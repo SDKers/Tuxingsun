@@ -5,10 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import com.txscore.TuxingsunAbility;
-import com.txscore.utils.AccessibilityHelper;
-import com.txscore.utils.log.L;
-import com.txscore.utils.log.T;
+import com.txs.TuxingsunAbility;
+import com.txs.utils.AccessibilityHelper;
+import com.txs.utils.log.L;
+import com.txs.utils.log.T;
 
 import java.lang.reflect.Method;
 
@@ -39,6 +39,8 @@ public class MainActivity extends Activity {
                         method.setAccessible(true);
                         method.invoke(thisObj);
                     }
+                } catch (NoSuchMethodException e) {
+                    // not impl
                 } catch (Throwable e) {
                     L.e(e);
                 }

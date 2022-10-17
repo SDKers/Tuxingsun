@@ -1,4 +1,4 @@
-package com.txscore.utils.m;
+package com.txs.utils.m;
 
 /**
  * @Copyright © 2019 sanbo Inc. All rights reserved.

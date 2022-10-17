@@ -1,4 +1,4 @@
-package com.txscore.utils.apps;
+package com.txs.utils.apps;
 
 import android.content.ComponentName;
 import android.content.Context;

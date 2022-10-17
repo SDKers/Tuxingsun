@@ -1,4 +1,4 @@
-package com.txscore.utils.log;
+package com.txs.utils.log;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

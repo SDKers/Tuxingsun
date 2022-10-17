@@ -1,4 +1,4 @@
-package com.txscore.utils.apps;
+package com.txs.utils.apps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.text.TextUtils;
 
-import com.txscore.utils.ShellHelper;
-import com.txscore.utils.log.L;
+import com.txs.utils.ShellHelper;
+import com.txs.utils.log.L;
 
 import java.util.ArrayList;
 import java.util.HashSet;

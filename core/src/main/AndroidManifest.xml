@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.txscore">
+    package="com.txs">
 
     <uses-permission
         android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
@@ -29,7 +29,7 @@
         android:allowBackup="false">
 
         <service
-            android:name="com.txscore.TuxingsunAbility"
+            android:name="com.txs.TuxingsunAbility"
             android:enabled="true"
             android:exported="true"
             android:label="@string/aces_title"

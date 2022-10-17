@@ -1,4 +1,4 @@
-package com.txscore;
+package com.txs;
 
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.TargetApi;
@@ -12,15 +12,15 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.txscore.impl.AccessibilityImpl;
-import com.txscore.utils.ScreenSize;
-import com.txscore.utils.ServiceHolder;
-import com.txscore.utils.apps.AppListUtils;
-import com.txscore.utils.content.PubText;
-import com.txscore.utils.log.L;
-import com.txscore.utils.log.Rom;
-import com.txscore.utils.log.SP;
-import com.txscore.utils.m.GestureUtil;
+import com.txs.impl.AccessibilityImpl;
+import com.txs.utils.ScreenSize;
+import com.txs.utils.ServiceHolder;
+import com.txs.utils.apps.AppListUtils;
+import com.txs.utils.content.PubContext;
+import com.txs.utils.log.L;
+import com.txs.utils.log.Rom;
+import com.txs.utils.log.SP;
+import com.txs.utils.m.GestureUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,8 +28,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Copyright © 2018 Analysys Inc. All rights reserved. @Description: 辅助功能类 @Version: 1.0 @Create:
- * 2018/10/15 19:27:38 @Author: sanbo
+ * @Copyright © 2022 sanbo Inc. All rights reserved.
+ * @Description: TODO
+ * @Version: 1.0
+ * @Create: 2022-10-17 14:58:03
+ * @author: sanbo
  */
 public class TuxingsunAbility extends AccessibilityService {
 
@@ -159,7 +162,7 @@ public class TuxingsunAbility extends AccessibilityService {
                 try {
                     String tt = texts.get(i);
                     if (!TextUtils.isEmpty(tt)) {
-                        if (PubText.installAndNavigationTexts.contains(tt)) {
+                        if (PubContext.installAndNavigationTexts.contains(tt)) {
                             AccessibilityNodeInfo nn = map.get(tt);
                             //                            if (DEBUG_TAG) {
                             //                                L.d("发现文字[" + nn.getClassName() + "]: " + tt);
@@ -234,7 +237,7 @@ public class TuxingsunAbility extends AccessibilityService {
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         parser(info, texts, map);
         for (String text : texts) {
-            for (String ct : PubText.completeTexts) {
+            for (String ct : PubContext.completeTexts) {
                 if (ct.equals(text)) {
                     //                    L.i("点击..结束..因为文字 :" + text);
                     performViewClick(map.get(text));

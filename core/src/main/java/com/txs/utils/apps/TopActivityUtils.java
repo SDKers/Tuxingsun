@@ -1,5 +1,6 @@
-package com.txscore.utils.apps;
+package com.txs.utils.apps;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Instrumentation;
@@ -8,7 +9,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.txscore.utils.log.L;
+import com.txs.utils.log.L;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -31,6 +32,7 @@ public class TopActivityUtils {
                 .getClassName();
     }
 
+    @SuppressLint("SoonBlockedPrivateApi")
     @SuppressWarnings("unchecked")
     public static String getNowActivity(Application app) {
         Field f;

@@ -1,4 +1,4 @@
-package com.txscore.utils;
+package com.txs.utils;
 
 import android.Manifest;
 import android.accessibilityservice.AccessibilityService;
@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.txscore.utils.log.L;
+import com.txs.utils.log.L;
 
 import java.util.Arrays;
 

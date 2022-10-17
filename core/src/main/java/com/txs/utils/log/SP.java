@@ -1,4 +1,4 @@
-package com.txscore.utils.log;
+package com.txs.utils.log;
 
 import android.content.Context;
 import android.content.SharedPreferences;

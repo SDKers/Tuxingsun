@@ -1,4 +1,4 @@
-package com.txscore.utils.content;
+package com.txs.utils.content;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.List;
  * @Create: 2020/4/27 17:46
  * @author: sanbo
  */
-public class PubText {
+public class PubContext {
 
     // 安装包名
     public static ArrayList<String> INSTALL_PKGS =

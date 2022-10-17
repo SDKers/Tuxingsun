@@ -1,4 +1,4 @@
-package com.txscore.utils.m;
+package com.txs.utils.m;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.ViewConfiguration;
 
-import com.txscore.utils.ServiceHolder;
+import com.txs.utils.ServiceHolder;
 
 /**
  * @Copyright © 2019 sanbo Inc. All rights reserved.

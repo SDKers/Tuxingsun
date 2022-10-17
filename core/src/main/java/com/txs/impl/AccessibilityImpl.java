@@ -1,13 +1,13 @@
-package com.txscore.impl;
+package com.txs.impl;
 
 import android.content.Context;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.txscore.TuxingsunAbility;
-import com.txscore.utils.ContextHolder;
-import com.txscore.utils.content.PubText;
-import com.txscore.utils.log.L;
+import com.txs.TuxingsunAbility;
+import com.txs.utils.ContextHolder;
+import com.txs.utils.content.PubContext;
+import com.txs.utils.log.L;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,13 +55,13 @@ public class AccessibilityImpl {
         }
         //    }
         // 2.判断具体操作
-        if (PubText.INSTALL_PKGS.contains(pkgName) || PubText.INSTALL_PAGES.contains(className)) {
+        if (PubContext.INSTALL_PKGS.contains(pkgName) || PubContext.INSTALL_PAGES.contains(className)) {
             if (TuxingsunAbility.DEBUG_TAG) {
                 L.d("will 安装~~");
             }
             // 安装
             installApp(event, node);
-        } else if (PubText.REMOVE_PKGS.contains(pkgName)) {
+        } else if (PubContext.REMOVE_PKGS.contains(pkgName)) {
             if (TuxingsunAbility.DEBUG_TAG) {
                 L.d("will 卸载~~");
             }
@@ -139,16 +139,16 @@ public class AccessibilityImpl {
      */
     private static boolean hasPasswordArea(AccessibilityNodeInfo node) {
         String pkgName = node.getPackageName().toString();
-        if (PubText.PWD_DIALOG_PKG.contains(pkgName)) {
+        if (PubContext.PWD_DIALOG_PKG.contains(pkgName)) {
             return true;
         }
         List<String> result = new ArrayList<String>();
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         TuxingsunAbility.parser(node, result, map);
 
-        return result.contains(PubText.DIALOG_TEXT.get(1))
-                && result.contains(PubText.DIALOG_TEXT.get(2))
-                && result.contains(PubText.DIALOG_TEXT.get(3));
+        return result.contains(PubContext.DIALOG_TEXT.get(1))
+                && result.contains(PubContext.DIALOG_TEXT.get(2))
+                && result.contains(PubContext.DIALOG_TEXT.get(3));
     }
 
     /**
@@ -162,7 +162,7 @@ public class AccessibilityImpl {
         Map<String, AccessibilityNodeInfo> map = new HashMap<String, AccessibilityNodeInfo>();
         TuxingsunAbility.parser(node, arr, map);
         for (String key : arr) {
-            if (PubText.INSTALL_STEP_TEXT.contains(key)) {
+            if (PubContext.INSTALL_STEP_TEXT.contains(key)) {
                 TuxingsunAbility.performViewClick(map.get(key));
                 return true;
             }

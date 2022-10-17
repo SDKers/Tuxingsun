@@ -1,4 +1,4 @@
-package com.txscore.utils.log;
+package com.txs.utils.log;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.widget.Toast;
 
-import com.txscore.utils.ContextHolder;
+import com.txs.utils.ContextHolder;
 
 /**
  * @Copyright © 2015 sanbo Inc. All rights reserved.

@@ -1,12 +1,12 @@
-package com.txscore;
+package com.txs;
 
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.txscore.model.MemoryModel;
-import com.txscore.utils.log.L;
+import com.txs.model.MemoryModel;
+import com.txs.utils.log.L;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
