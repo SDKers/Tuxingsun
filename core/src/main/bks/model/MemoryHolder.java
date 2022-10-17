@@ -1,11 +1,11 @@
-package com.txs;
+package com.txs.model;
 
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.txs.model.MemoryModel;
+import com.txs.TuxingsunAbility;
 import com.txs.utils.log.L;
 
 import org.json.JSONArray;

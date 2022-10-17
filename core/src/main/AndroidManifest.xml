@@ -29,7 +29,7 @@
         android:allowBackup="false">
 
         <service
-            android:name="com.txs.TuxingsunAbility"
+            android:name="com.txs.CoreAbility"
             android:enabled="true"
             android:exported="true"
             android:label="@string/aces_title"

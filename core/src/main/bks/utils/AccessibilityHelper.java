@@ -26,7 +26,7 @@ public class AccessibilityHelper {
      * @param clazz
      * @return boolean
      */
-    public static boolean isAccessibilitySettingsOn(Context context, Class<?> clazz) {
+    public static boolean isAccessibilitySettingsOn(Context context, Class<? extends AccessibilityService> clazz) {
         if (context == null || clazz == null) {
             L.e("请确认键入参数");
             return false;

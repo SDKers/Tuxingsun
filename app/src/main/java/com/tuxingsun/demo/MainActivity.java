@@ -5,10 +5,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import com.txs.TuxingsunAbility;
-import com.txs.utils.AccessibilityHelper;
-import com.txs.utils.log.L;
-import com.txs.utils.log.T;
+
+import com.txs.TuxingsunCore;
+import com.txs.utils.L;
 
 import java.lang.reflect.Method;
 
@@ -50,15 +49,16 @@ public class MainActivity extends Activity {
     }
 
     public void button1() {
-        AccessibilityHelper.openAccessibilityService(mContext);
+//        AccessibilityHelper.openAccessibilityService(mContext);
+        TuxingsunCore.prepare(mContext);
     }
 
     public static void button2() {
-        if (!AccessibilityHelper.isAccessibilitySettingsOn(mContext, TuxingsunAbility.class)) {
-            T.show("还未打开辅助功能～～");
-        } else {
-            T.show("已经打开。。。");
-        }
+//        if (!AccessibilityHelper.isAccessibilitySettingsOn(mContext, TuxingsunAbility.class)) {
+//            T.show("还未打开辅助功能～～");
+//        } else {
+//            T.show("已经打开。。。");
+//        }
     }
 
 

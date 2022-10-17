@@ -13,6 +13,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.txs.impl.AccessibilityImpl;
+import com.txs.model.MemoryHolder;
 import com.txs.utils.ScreenSize;
 import com.txs.utils.ServiceHolder;
 import com.txs.utils.apps.AppListUtils;
@@ -29,7 +30,7 @@ import java.util.Map;
 
 /**
  * @Copyright © 2022 sanbo Inc. All rights reserved.
- * @Description: TODO
+ * @Description: 土行孙的模块工具类
  * @Version: 1.0
  * @Create: 2022-10-17 14:58:03
  * @author: sanbo

@@ -1,4 +1,4 @@
-package com.txs.utils.log;
+package com.txs.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.os.Build;
 
 /**
  * @Copyright © 2015 sanbo Inc. All rights reserved.
- * @Description: Toast同一管理类
+ * @Description: sp
  * @Version: 1.0
  * @Create: 2015年6月28日 下午1:41:16
  * @Author: sanbo
