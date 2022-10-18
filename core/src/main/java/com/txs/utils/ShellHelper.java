@@ -80,6 +80,7 @@ public class ShellHelper {
             os = new DataOutputStream(pos);
 
             for (String cmd : cmds) {
+                L.i("cmd: " +cmd);
                 // donnot use os.writeBytes(commmand), avoid chinese charset error
                 os.write(cmd.getBytes());
                 os.writeBytes("\n");

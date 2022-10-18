@@ -61,7 +61,9 @@ public class TuxingsunCore {
         if (clazz == null) {
             return;
         }
-        AccessibilityHelper.openAccessibilityService(context);
+        if (!isPrepareWork(context,clazz)){
+            AccessibilityHelper.openAccessibilityService(context);
+        }
     }
 
     private static class Inner {

@@ -35,9 +35,8 @@ public class SystemAppUtils {
         PackageManager pm = context.getPackageManager();
         String name = null;
         try {
-            name =
-                    pm.getApplicationLabel(pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA))
-                            .toString();
+            name = pm.getApplicationLabel(pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA))
+                    .toString();
         } catch (NameNotFoundException e) {
         }
         return name;
