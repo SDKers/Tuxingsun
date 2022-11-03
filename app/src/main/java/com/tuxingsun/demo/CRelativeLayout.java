@@ -320,8 +320,7 @@ public class CRelativeLayout extends RelativeLayout {
             x = Integer.parseInt(field.get(obj).toString());
             statusBarHeight = mContext.getResources().getDimensionPixelSize(x);
             return statusBarHeight;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Throwable e) {
         }
         return statusBarHeight;
     }
